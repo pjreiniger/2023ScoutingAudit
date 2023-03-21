@@ -1,5 +1,3 @@
-
-
 from compare import compare_matches
 from model.scouted_data import load_team_data_from_csv
 from model.tba_data import load_tba_result
@@ -11,4 +9,3 @@ if __name__ == "__main__":
     scouted_data = load_team_data_from_csv("data/matchscouting_frc4467_2023ohmv_1679234361450.csv")
 
     compare_matches("2023ohmv", scouted_data, tba_data)
-

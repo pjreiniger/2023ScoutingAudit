@@ -40,10 +40,10 @@ class ScoutedTeamData:
         output.auto_grid = _grid_from_pandas(dataframe, "auto", 1)
         output.tele_grid = _grid_from_pandas(dataframe, "teleop", 0)
 
-        output.did_auto_mobility = dataframe['didCommunity'] == 1
+        output.did_auto_mobility = dataframe["didCommunity"] == 1
 
-        output.auto_charge_station_points = _charge_station_state_to_points(dataframe['autoChargingStation'], 4)
-        output.tele_endgame_points = _charge_station_state_to_points(dataframe['endgameChargingStation'], 0)
+        output.auto_charge_station_points = _charge_station_state_to_points(dataframe["autoChargingStation"], 4)
+        output.tele_endgame_points = _charge_station_state_to_points(dataframe["endgameChargingStation"], 0)
 
         output.tele_charge_station_points = 0
 
@@ -151,8 +151,8 @@ def load_team_data_from_csv(filename):
 
     output = {}
 
-    for match_number in pd.unique(dataframe['match_number']):
-    # for match_number in [1]:
+    for match_number in pd.unique(dataframe["match_number"]):
+        # for match_number in [1]:
         match_data = dataframe[dataframe.match_number == match_number]
         output[match_number] = ScoutedMatchData.from_pandas(match_data)
 
@@ -162,12 +162,12 @@ def load_team_data_from_csv(filename):
 def _grid_from_pandas(dataframe, prefix, bonus_point) -> GridCount:
     output = GridCount(bonus_point)
 
-    output.low_cones = dataframe[prefix + 'ConesLow']
-    output.mid_cones = dataframe[prefix + 'ConesMid']
-    output.high_cones = dataframe[prefix + 'ConesHigh']
+    output.low_cones = dataframe[prefix + "ConesLow"]
+    output.mid_cones = dataframe[prefix + "ConesMid"]
+    output.high_cones = dataframe[prefix + "ConesHigh"]
 
-    output.low_cubes = dataframe[prefix + 'CubesLow']
-    output.mid_cubes = dataframe[prefix + 'CubesMid']
-    output.high_cubes = dataframe[prefix + 'CubesHigh']
+    output.low_cubes = dataframe[prefix + "CubesLow"]
+    output.mid_cubes = dataframe[prefix + "CubesMid"]
+    output.high_cubes = dataframe[prefix + "CubesHigh"]
 
     return output

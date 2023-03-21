@@ -62,5 +62,5 @@ def compare_matches(event_key: str, scouted_data: List[ScoutedMatchData], tba_da
 
     template.globals["compare_helper"] = compare_helper
 
-    with open("comparison.html", 'w') as f:
-        f.write(template.render(event_key = event_key, scouted_data=scouted_data, tba_data=tba_data))
+    with open("comparison.html", "w") as f:
+        f.write(template.render(event_key=event_key, scouted_data=scouted_data, tba_data=tba_data))

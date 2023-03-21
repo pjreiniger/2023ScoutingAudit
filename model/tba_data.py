@@ -44,8 +44,8 @@ class TbaAllianceData:
     def from_json(json_data):
         output = TbaAllianceData()
 
-        output.auto_grid = _grid_from_json(json_data['autoCommunity'], bonus_point=1)
-        output._tele_grid = _grid_from_json(json_data['teleopCommunity'], bonus_point=0)
+        output.auto_grid = _grid_from_json(json_data["autoCommunity"], bonus_point=1)
+        output._tele_grid = _grid_from_json(json_data["teleopCommunity"], bonus_point=0)
 
         output.tele_only_grid = output._tele_grid - output.auto_grid
 
@@ -194,11 +194,11 @@ def _grid_from_json(json_data, bonus_point) -> GridCount:
 
 
 def load_tba_result(filename):
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         json_data = json.load(f)
 
     output = {}
     for match_json in json_data:
-        output[match_json['match_number']] = TbaMatchData.from_json(match_json)
+        output[match_json["match_number"]] = TbaMatchData.from_json(match_json)
 
     return output
