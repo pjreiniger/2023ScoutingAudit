@@ -1,0 +1,68 @@
+<html>
+<body>
+
+<table border="1">
+    <tr>
+        <th> Match </th>
+        <th> TBA </th>
+        <th> Scouting </th>
+        <th> Alliance </th>
+
+        <th> Total Pieces </th>
+        <th> Auto Score </th>
+        <th> Auto Pieces </th>
+        <th> Auto Pieces Points </th>
+        <th> Tele Pieces </th>
+        <th> Tele Pieces Points </th>
+        <th> Endgame Points </th>
+        <th> Tele Score </th>
+        <th> Simple Total </th>
+    </tr>
+{% for match_number in scouted_data.keys() if match_number in tba_data %}
+    {% set tba_match = tba_data[match_number] %}
+    {% set scouted_match = scouted_data[match_number] %}
+    <tr>
+        <td>{{match_number}}</td>
+        <td style='background-color: {{ "red" if tba_match.red.failed_validation or tba_match.blue.failed_validation }}'     ><a href="https://www.thebluealliance.com/match/{{event_key}}_qm{{match_number}}">Link</a></td>
+        <td style='background-color: {{ "red" if scouted_match.red.teams|length != 3 or scouted_match.blue.teams|length != 3 }}' ><a href="https://scoutradioz.com/reports/matchdata?key={{event_key}}_qm{{match_number}}">Link</a></td>
+
+        <td> Red </td>
+        {% set scouted_alliance = scouted_match.red %}
+        {% set tba_alliance = tba_match.red %}
+        {{ compare_helper("total_pieces", scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_pieces",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_pieces_points",  scouted_alliance, tba_alliance) }}
+
+        {{ compare_helper("tele_pieces",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("tele_pieces_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("endgame_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("tele_points",   scouted_alliance, tba_alliance) }}
+
+        {{ compare_helper("simple_total",   scouted_alliance, tba_alliance) }}
+    </tr>
+    <tr>
+        <td>{{match_number}}</td>
+        <td style='background-color: {{ "red" if tba_match.red.failed_validation or tba_match.blue.failed_validation }}'     ><a href="https://www.thebluealliance.com/match/{{event_key}}_qm{{match_number}}">Link</a></td>
+        <td style='background-color: {{ "red" if scouted_match.red.teams|length != 3 or scouted_match.blue.teams|length != 3 }}' ><a href="https://scoutradioz.com/reports/matchdata?key={{event_key}}_qm{{match_number}}">Link</a></td>
+
+        <td> Blue </td>
+        {% set scouted_alliance = scouted_match.blue %}
+        {% set tba_alliance = tba_match.blue %}
+        {{ compare_helper("total_pieces", scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_pieces",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("auto_pieces_points",  scouted_alliance, tba_alliance) }}
+
+        {{ compare_helper("tele_pieces",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("tele_pieces_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("endgame_points",  scouted_alliance, tba_alliance) }}
+        {{ compare_helper("tele_points",   scouted_alliance, tba_alliance) }}
+
+        {{ compare_helper("simple_total",   scouted_alliance, tba_alliance) }}
+    </tr>
+{% endfor %}
+</table>
+
+<body>
+<html>
